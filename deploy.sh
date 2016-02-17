@@ -5,11 +5,13 @@ echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
 cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
+rm -rf *
 echo "All tests have passed, will now build into ${SOFT_DIR}"
 ../config \
 --prefix=${SOFT_DIR} \
 --unified \
 --shared
+make depend
 make -j2
 make install
 echo "Creating the modules file directory ${LIBRARIES_MODULES}"

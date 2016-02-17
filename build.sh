@@ -31,4 +31,5 @@ cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
 --prefix=${SOFT_DIR} \
 --unified \
 --shared
+make depend
 make -j2
