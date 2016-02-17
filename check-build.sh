@@ -3,7 +3,7 @@
 . /etc/profile.d/modules.sh
 module load ci
 cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
-make tests
+make test
 #  in Issue #4 we noted that some of the variables seem messed up - the install script tries
 # to install the development files (target 'install_dev') , but the shared libraries gain a static
 # suffix (.so.{VERSION}.a). this is wierd, since the builds complete fine. We are doing something
@@ -22,9 +22,6 @@ make -i install
 
 echo "checking if Test::More is available"
 
-
-
-make test
 mkdir -p ${SOFT_DIR}
 mkdir -p modules
 (
