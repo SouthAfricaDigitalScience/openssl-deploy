@@ -32,4 +32,4 @@ cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
 --unified \
 --shared
 make depend
-make -j2
+make
