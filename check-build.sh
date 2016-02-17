@@ -3,7 +3,7 @@
 . /etc/profile.d/modules.sh
 module load ci
 cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
-make check
+make test
 make install
 
 echo $?
