@@ -38,7 +38,7 @@ module-whatis   "$NAME $VERSION."
 setenv       OPENSSL_VERSION       $VERSION
 setenv       OPENSSL_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
-prepend-path PATH                  $::env(OPENSSL_DIR)
+prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
 prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
 
@@ -61,5 +61,6 @@ wget http://fm4dd.com/openssl/source/sslconnect.c
 echo "trying to compile sample application"
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
+export ${CFLAGS} ${LDFLAGS}
 gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect
