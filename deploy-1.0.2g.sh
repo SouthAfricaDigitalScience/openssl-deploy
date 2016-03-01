@@ -51,5 +51,5 @@ echo "trying to compile sample application"
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
 export ${CFLAGS} ${LDFLAGS}
-gcc -lssl -lcrypto -o sslconnect sslconnect.c
+CFLAGS=$CFLAGS LDFLAGS=$LD_FLAGS gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect
