@@ -13,7 +13,10 @@ echo "All tests have passed, will now build into ${SOFT_DIR}"
 --shared
 make depend
 make -j2
+make test
+touch libcrypto.so.1.1.a
 make install
+
 echo "Creating the modules file directory ${LIBRARIES_MODULES}"
 mkdir -p ${LIBRARIES_MODULES}/${NAME}
 (
