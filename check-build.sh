@@ -2,7 +2,7 @@
 # Check build script for Open SSL.
 . /etc/profile.d/modules.sh
 module load ci
-cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
+cd ${WORKSPACE}/${NAME}-${VERSION}
 make test
 #  in Issue #4 we noted that some of the variables seem messed up - the install script tries
 # to install the development files (target 'install_dev') , but the shared libraries gain a static
@@ -40,7 +40,7 @@ setenv       OPENSSL_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
-prepend-path CFLAGS                "-I$env(OPENSSL_DIR)/include"
+prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
 
 MODULE_FILE
 ) > modules/$VERSION
@@ -49,7 +49,7 @@ mkdir -p ${LIBRARIES_MODULES}/${NAME}
 cp modules/$VERSION ${LIBRARIES_MODULES}/${NAME}
 
 # check the module
-module avail ${NAME}
+module avail ${NAME}/
 which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}

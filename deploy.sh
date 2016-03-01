@@ -4,10 +4,10 @@
 echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
-cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
-rm -rf *
+cd ${WORKSPACE}/${NAME}-${VERSION}/
+make distclean
 echo "All tests have passed, will now build into ${SOFT_DIR}"
-../config \
+./config \
 --prefix=${SOFT_DIR} \
 --unified \
 --shared
@@ -35,7 +35,7 @@ setenv       OPENSSL_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
-prepend-path CFLAGS                "-I$env(OPENSSL_DIR)/include"
+prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
 MODULE_FILE
 ) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
 
