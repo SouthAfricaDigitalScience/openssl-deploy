@@ -37,9 +37,10 @@ proc ModulesHelp { } {
 module-whatis   "$NAME $VERSION."
 setenv       OPENSSL_VERSION       $VERSION
 setenv       OPENSSL_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
-prepend-path LD_LIBRARY_PATH   $::env(OPENSSL_DIR)/lib
-prepend-path PATH              $::env(OPENSSL_DIR)
-prepend-path LDFLAGS           "-L${OPENSSL_DIR}/lib"
+prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
+prepend-path PATH                  $::env(OPENSSL_DIR)
+prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
+prepend-path CFLAGS                "-I$env(OPENSSL_DIR)/include"
 
 MODULE_FILE
 ) > modules/$VERSION
@@ -50,3 +51,15 @@ cp modules/$VERSION ${LIBRARIES_MODULES}/${NAME}
 # check the module
 module avail ${NAME}
 which openssl
+echo "adding module"
+module add ${NAME}/${VERSION}
+which openssl
+
+echo "getting sample code"
+wget http://fm4dd.com/openssl/source/sslconnect.c
+
+echo "trying to compile sample application"
+echo "CFLAGS  : $CFLAGS"
+echo "LDFLAGS : $LDFLAGS"
+gcc -lssl -lcrypto -o sslconnect sslconnect.c
+./sslconnect

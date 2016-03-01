@@ -31,14 +31,23 @@ proc ModulesHelp { } {
 
 module-whatis   "$NAME $VERSION."
 setenv       OPENSSL_VERSION       $VERSION
-setenv       OPENSSL_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
-prepend-path LD_LIBRARY_PATH   $::env(OPENSSL_DIR)/lib
-prepend-path PATH              $::env(OPENSSL_DIR)
-prepend-path LDFLAGS           "-L${OPENSSL_DIR}/lib"
+setenv       OPENSSL_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
+prepend-path PATH                  $::env(OPENSSL_DIR)
+prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
+prepend-path CFLAGS                "-I$env(OPENSSL_DIR)/include"
 MODULE_FILE
 ) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
 
 # test the module
-module availe ${NAME}
-module add ${NAME}
+module avail ${NAME}
 which openssl
+echo "adding module"
+module add ${NAME}/${VERSION}
+which openssl
+
+echo "getting sample code"
+wget http://fm4dd.com/openssl/source/sslconnect.c
+
+gcc -lssl -lcrypto -o sslconnect sslconnect.c
+./sslconnect
