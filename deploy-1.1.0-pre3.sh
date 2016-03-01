@@ -5,7 +5,7 @@ echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
 cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
-make distclean
+rm -rf *
 echo "All tests have passed, will now build into ${SOFT_DIR}"
 ../config \
 --prefix=${SOFT_DIR} \
@@ -48,6 +48,6 @@ which openssl
 
 echo "getting sample code"
 wget http://fm4dd.com/openssl/source/sslconnect.c
-
+export ${CFLAGS} ${LDFLAGS}
 gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect
