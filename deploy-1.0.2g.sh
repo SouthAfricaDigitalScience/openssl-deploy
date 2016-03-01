@@ -9,7 +9,6 @@ make distclean
 echo "All tests have passed, will now build into ${SOFT_DIR}"
 ./config \
 --prefix=${SOFT_DIR} \
---unified \
 --shared
 make depend
 make -j2
