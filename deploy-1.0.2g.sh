@@ -50,5 +50,5 @@ wget http://fm4dd.com/openssl/source/sslconnect.c
 echo "trying to compile sample application"
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
-CFLAGS=$CFLAGS LDFLAGS=$LD_FLAGS gcc -lssl -lcrypto -o sslconnect sslconnect.c
+CFLAGS=$CFLAGS/openssl LDFLAGS=$LD_FLAGS gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect
