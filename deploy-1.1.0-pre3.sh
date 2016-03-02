@@ -48,5 +48,5 @@ which openssl
 
 echo "getting sample code"
 wget http://fm4dd.com/openssl/source/sslconnect.c
-CFLAGS=$CFLAGS/openssl LDFLAGS=$LD_FLAGS gcc -lssl -lcrypto -o sslconnect sslconnect.c
+CFLAGS="-I${OPENSSL_DIR}/include/openssl" LDFLAGS="-L${OPENSSL_DIR}/lib"  gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect

@@ -40,7 +40,7 @@ setenv       OPENSSL_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
-prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
+prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include/"
 
 MODULE_FILE
 ) > modules/$VERSION
@@ -59,9 +59,9 @@ echo "getting sample code"
 wget http://fm4dd.com/openssl/source/sslconnect.c
 
 echo "trying to compile sample application"
+export CFLAGS=${CFLAGS}
+export LDFLAGS=${LDFLAGS}
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
-export CFLAGS=${CFLAGS}/openssl
-export LDFLAGS=${LDFLAGS}
-gcc -lssl -lcrypto -o sslconnect sslconnect.c
+CFLAGS="-I${OPENSSL_DIR}/include/openssl" LDFLAGS="-L${OPENSSL_DIR}/lib" gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect

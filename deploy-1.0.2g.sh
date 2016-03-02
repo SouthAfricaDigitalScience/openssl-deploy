@@ -34,7 +34,7 @@ setenv       OPENSSL_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
-prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
+prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include/"
 MODULE_FILE
 ) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
 
@@ -50,5 +50,5 @@ wget http://fm4dd.com/openssl/source/sslconnect.c
 echo "trying to compile sample application"
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
-CFLAGS=$CFLAGS/openssl LDFLAGS=$LD_FLAGS gcc -lssl -lcrypto -o sslconnect sslconnect.c
+CFLAGS="-I${OPENSSL_DIR}/include/openssl" LDFLAGS="-L${OPENSSL_DIR}/lib"  gcc -lssl -lcrypto -o sslconnect sslconnect.c
 ./sslconnect
