@@ -3,4 +3,6 @@
 # OpenSSL
 
 source at ftp://ftp.openssl.org/source/
-Version 1.1.0-pre3
+Versions:
+  * 1.1.0-pre3
+  * 1.0.2g

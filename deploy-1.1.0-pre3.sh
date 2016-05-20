@@ -45,8 +45,9 @@ which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}
 which openssl
+find ${OPENSSL_DIR}/lib -name "libssl.so*"
 
 echo "getting sample code"
 wget http://fm4dd.com/openssl/source/sslconnect.c
-CFLAGS="-I${OPENSSL_DIR}/include/openssl" LDFLAGS="-L${OPENSSL_DIR}/lib"  gcc -lssl -lcrypto -o sslconnect sslconnect.c
+gcc -o sslconnect sslconnect.c -L${OPENSSL_DIR}/lib -I${OPENSSL_DIR}/include  -lssl -lcrypto
 ./sslconnect
