@@ -1,4 +1,4 @@
-[![Build Status](http://ci.sagrid.ac.za/buildStatus/icon?job=openssl-deploy)](http://ci.sagrid.ac.za/view/All/job/openssl-deploy/)
+[![Build Status](https://ci.sagrid.ac.za/buildStatus/icon?job=openssl-deploy)](https://ci.sagrid.ac.za/job/openssl-deploy)
 
 # OpenSSL
 
