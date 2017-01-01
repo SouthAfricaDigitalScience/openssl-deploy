@@ -29,7 +29,6 @@ mkdir -p ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
 cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
 ../config \
 --prefix=${SOFT_DIR} \
---unified \
 --shared
 make depend
 make
