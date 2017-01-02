@@ -4,10 +4,10 @@
 echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
-cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
+cd ${WORKSPACE}/${NAME}-${VERSION}
 make clean
 echo "All tests have passed, will now build into ${SOFT_DIR}"
-../config \
+./config \
 --prefix=${SOFT_DIR} \
 --shared
 make depend
