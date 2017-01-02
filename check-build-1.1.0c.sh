@@ -11,7 +11,7 @@ make test
 # here, but it doesn't seemw worth the effort to chase this down. Just let make go about it's business
 # and ignore errors.
 
-make -i install
+make install
 
 # OpenSSL test needs a couple of  perl  modules, one of which is Test::More. (version 0.96)
 # We need to check if this is available and has the right version.
@@ -50,9 +50,11 @@ cp modules/$VERSION ${LIBRARIES_MODULES}/${NAME}
 
 # check the module
 module avail ${NAME}/
-which openssl
+#which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}
+echo "what is  in ${SOFT_DIR}? "
+tree ${SOFT_DIR}
 which openssl
 
 echo "getting sample code"
