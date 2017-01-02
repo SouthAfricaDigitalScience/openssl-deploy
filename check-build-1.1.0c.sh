@@ -49,7 +49,7 @@ mkdir -p ${LIBRARIES_MODULES}/${NAME}
 cp modules/$VERSION ${LIBRARIES_MODULES}/${NAME}
 
 # check the module
-module avail ${NAME}/
+module avail ${NAME}
 #which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}

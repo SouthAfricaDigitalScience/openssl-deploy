@@ -1,11 +1,11 @@
-#!/bin/bash -e
+  #!/bin/bash -e
 # Deploy script for openssl.
 . /etc/profile.d/modules.sh
 echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
 cd ${WORKSPACE}/${NAME}-${VERSION}
-rm -rf *
+make clean
 echo "All tests have passed, will now build into ${SOFT_DIR}"
 ./config \
 --prefix=${SOFT_DIR} \

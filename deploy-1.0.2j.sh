@@ -40,7 +40,7 @@ MODULE_FILE
 
 # test the module
 module avail ${NAME}
-which openssl
+#which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}
 which openssl
