@@ -4,7 +4,7 @@
 echo ${SOFT_DIR}
 module add deploy
 echo ${SOFT_DIR}
-cd ${WORKSPACE}/${NAME}-${VERSION}/
+cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
 make clean
 echo "All tests have passed, will now build into ${SOFT_DIR}"
 ./config \
