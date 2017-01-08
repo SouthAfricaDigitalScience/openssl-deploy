@@ -1,3 +1,4 @@
 check.c
 *.out
 *.tar.gz
+openssl-*
