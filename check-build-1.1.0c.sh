@@ -36,7 +36,7 @@ proc ModulesHelp { } {
 
 module-whatis   "$NAME $VERSION."
 setenv       OPENSSL_VERSION       $VERSION
-setenv       OPENSSL_DIR           $::env(SOFT_DIR)
+setenv       OPENSSL_DIR           /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
