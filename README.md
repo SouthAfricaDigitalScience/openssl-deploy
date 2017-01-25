@@ -12,8 +12,19 @@ We build the latest and LTS versions of openssl :
   * 1.1.0c
   * 1.0.2j
 
-Let us know if  you want other ones (with ye olde issue)
+Let us know if  you want other ones (with ye olde [issue](https://github.com/SouthAfricaDigitalScience/openssl-deploy/issues/new))
 
+# Configuration Options
+
+We configure the build with the following options :
+
+```
+./config \
+--prefix=${SOFT_DIR} \
+--shared
+make depend
+
+```
 # Citing
 
 If you use these builds in your work (ie, you do `module add openssl` somewhere in your code), please see
