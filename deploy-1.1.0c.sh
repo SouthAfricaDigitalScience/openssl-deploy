@@ -1,4 +1,18 @@
-  #!/bin/bash -e
+#!/bin/bash -e
+  # Copyright 2016 C.S.I.R. Meraka Institute
+  #
+  # Licensed under the Apache License, Version 2.0 (the "License");
+  # you may not use this file except in compliance with the License.
+  # You may obtain a copy of the License at
+  #
+  #     http://www.apache.org/licenses/LICENSE-2.0
+  #
+  # Unless required by applicable law or agreed to in writing, software
+  # distributed under the License is distributed on an "AS IS" BASIS,
+  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  # See the License for the specific language governing permissions and
+  # limitations under the License.
+
 # Deploy script for openssl.
 . /etc/profile.d/modules.sh
 echo ${SOFT_DIR}
@@ -16,8 +30,8 @@ touch libcrypto.so.1.1.a
 touch libssl.so.1.1.a
 make -i install
 
-echo "Creating the modules file directory ${LIBRARIES_MODULES}"
-mkdir -p ${LIBRARIES_MODULES}/${NAME}
+echo "Creating the modules file directory ${LIBRARIES}"
+mkdir -p ${LIBRARIES}/${NAME}
 (
 cat <<MODULE_FILE
 #%Module1.0
@@ -36,7 +50,7 @@ prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
 prepend-path CFLAGS                "-I$::env(OPENSSL_DIR)/include"
 MODULE_FILE
-) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
+) > ${LIBRARIES}/${NAME}/${VERSION}
 
 # test the module
 module avail ${NAME}
