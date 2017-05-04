@@ -57,6 +57,7 @@ module avail ${NAME}
 which openssl
 echo "adding module"
 module add ${NAME}/${VERSION}
+echo $PATH
 which openssl
 find ${OPENSSL_DIR}/lib -name "libssl.so*"
 
