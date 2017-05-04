@@ -54,7 +54,7 @@ MODULE_FILE
 
 # test the module
 module avail ${NAME}
-which openssl
+
 echo "adding module"
 module add ${NAME}/${VERSION}
 echo $PATH
