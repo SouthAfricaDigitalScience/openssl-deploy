@@ -17,7 +17,6 @@
 . /etc/profile.d/modules.sh
 module add ci
 cd ${WORKSPACE}/${NAME}-${VERSION}
-# Install PERL modules
 cpanm Module::Load::Conditional
 make test
 #  in Issue #4 we noted that some of the variables seem messed up - the install script tries
@@ -35,9 +34,6 @@ make install
 #  * http://stackoverflow.com/questions/1039107/how-can-i-check-if-a-perl-module-is-installed-on-my-system-from-the-command-line
 #  * http://www.perlhowto.com/check_if_a_module_is_installed
 
-
-echo "checking if Test::More is available"
-
 mkdir -p ${SOFT_DIR}
 mkdir -p modules
 (
@@ -52,7 +48,7 @@ proc ModulesHelp { } {
 
 module-whatis   "$NAME $VERSION."
 setenv       OPENSSL_VERSION       $VERSION
-setenv       OPENSSL_DIR           /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv       OPENSSL_DIR          /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH       $::env(OPENSSL_DIR)/lib
 prepend-path PATH                  $::env(OPENSSL_DIR)/bin
 prepend-path LDFLAGS               "-L$::env(OPENSSL_DIR)/lib"
@@ -71,6 +67,7 @@ echo "adding module"
 module add ${NAME}/${VERSION}
 echo "what is  in ${SOFT_DIR}? "
 tree ${SOFT_DIR}
+
 which openssl
 
 echo "getting sample code"
