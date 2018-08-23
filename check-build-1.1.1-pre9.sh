@@ -17,7 +17,7 @@
 . /etc/profile.d/modules.sh
 module add ci
 cd ${WORKSPACE}/${NAME}-${VERSION}
-cpanm Module::Load::Conditional
+cpanm --local-lib=~/perl5 Module::Load::Conditional
 make test
 #  in Issue #4 we noted that some of the variables seem messed up - the install script tries
 # to install the development files (target 'install_dev') , but the shared libraries gain a static
