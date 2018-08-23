@@ -18,6 +18,7 @@
 module add ci
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo "what the hell is up with cpanm ?"
+echo "erm..."
 which cpanm
 ls -lht `which cpanm`
 cpanm --local-lib=~/perl5 Module::Load::Conditional
