@@ -17,6 +17,9 @@
 . /etc/profile.d/modules.sh
 module add ci
 cd ${WORKSPACE}/${NAME}-${VERSION}
+echo "what the hell is up with cpanm ?"
+which cpanm
+ls -lht `which cpanm`
 cpanm --local-lib=~/perl5 Module::Load::Conditional
 make test
 #  in Issue #4 we noted that some of the variables seem messed up - the install script tries
